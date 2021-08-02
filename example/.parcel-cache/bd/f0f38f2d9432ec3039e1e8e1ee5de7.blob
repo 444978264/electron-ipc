@@ -1,0 +1,3 @@
+const {IPCClient} = require('../dist');
+const ipc = new IPCClient();
+console.log(ipc);

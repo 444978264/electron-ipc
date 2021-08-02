@@ -1,0 +1,6 @@
+"use strict";
+if ("development" === 'production') {
+  module.exports = require('./electron-ipc.cjs.production.min.js');
+} else {
+  module.exports = require('./electron-ipc.cjs.development.js');
+}
