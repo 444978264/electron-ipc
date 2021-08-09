@@ -1,12 +1,18 @@
+const { IPCServer } = require('../dist');
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'app.js'),
+      devTools: true,
+      nodeIntegration: false,
+    },
   });
-  win.loadURL('http://localhost:1234');
-  // win.loadFile('index.html');
+  win.loadFile('index.html');
 }
 
 app.on('window-all-closed', function() {
@@ -14,8 +20,8 @@ app.on('window-all-closed', function() {
 });
 
 app.whenReady().then(() => {
+  const serve = new IPCServer();
   createWindow();
-
   app.on('activate', function() {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
