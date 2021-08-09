@@ -45,6 +45,9 @@ export class Connection implements IDispose {
   dispose() {
     if (!this._disposed) {
       this._disposed = true;
+      this._ownServiceMap.forEach(fn => {
+        fn.dispose();
+      });
       this._ownServiceMap.clear();
       this._dispose(this);
     }
