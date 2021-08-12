@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "parcel index.html",
+    "watch": "tsc -w",
     "start": "npx electron .",
     "build": "parcel build index.html"
   },
