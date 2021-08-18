@@ -21,8 +21,8 @@ export interface IServiceParams {
   params: any;
 }
 
-export interface IIpcEvent {
+export interface IIpcEvent<T = any> {
   channel: string;
-  sender: WebContents;
+  sender: T;
   data: IServiceParams;
 }
