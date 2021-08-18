@@ -15,6 +15,9 @@ export interface IService {
 export interface IServer {
   registerService(name: string, service: IService): IServer;
 }
+export interface IClient {
+  getService(name: string): void;
+}
 
 export interface IServiceParams {
   rpc: string;

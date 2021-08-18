@@ -1,9 +1,11 @@
 import { IService } from './base';
 
-export class Service implements IService {
-  constructor(private _name: string) {}
-  call(event: string, params?: any) {
-    return Promise.resolve();
+type IParams<T> = T extends (...args: infer P) => any ? P : any[];
+export class Service<T extends Record<string, (...args: any[]) => Promise<any>>>
+  implements IService {
+  constructor(private _options: T) {}
+  call<U extends keyof T>(event: U, ...params: IParams<U>) {
+    return this._options[event](params);
   }
 }
 
